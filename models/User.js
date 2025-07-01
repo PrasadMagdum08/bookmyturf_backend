@@ -1,26 +1,23 @@
-const mongoose = rqeuire('mongoose');
+const mongoose = require('mongoose');
 
-const SlotBookingSchema = new mongoose.Schema({
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true,
-    },
-    date: {
-        type: Date,
-        rqeuired: true,
-    },
-    timeSlot: {
+const UserSchema = new mongoose.Schema({
+    phone: {
         type: String,
         required: true,
+        unique: true
     },
-    status: {
+    role: {
         type: String,
-        enum: ['booked', 'available'],
-        default: 'available',
-        require: false,
+        enum: ['admin', 'user'],
+        default: 'user',
+        required: true
+    },
+    otp: {
+        type: String
+    },
+    otpExpires: {
+        type: Date
     }
 });
 
-
-module.exports - mongoose.model('SlotBooking', SlotBookingSchema);
+module.exports = mongoose.model('User', UserSchema);

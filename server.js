@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const bookingRoutes = require('./routes/bookingRoute');
 const dotenv = require('dotenv');
+const authRoutes = require('./routes/authRoute');
 
 dotenv.config();
 connectDB();
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(bodyParser.json());
  
 app.use('/api/', bookingRoutes);
+app.use('/api/auth', authRoutes);
 
 app.get('/', (req, res) => {
     res.send("BookMyTurf API is running!");
